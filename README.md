@@ -6,13 +6,12 @@
 - Abrimos la carpeta del proyecto dentro de Visual Code y con su terminal (¡Dentro del proyecto!) ejecutamos:
 
 ```
-  npx create-vite@latest
-  git init
+  npx create-vite@latest .
+  
   npm install
 ```
 
-- Configuramos repositorio remoto
-
+- 
 ## Tareas
 
 - Integramos index.html y los datos dentro de la estructura de vite
