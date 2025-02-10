@@ -29,3 +29,24 @@ document.querySelector('#app').innerHTML = `
 `
 
 ;
+
+//select DOM elements
+
+//variable activePlayer
+const SelectionPlayer0 = document.querySelector('.player--0');
+const SelectionPlayer1 = document.querySelector('.player--1');
+
+// score = [0,0] -> Variable de estado en JS
+
+const score0 = document.querySelector('.score--0');
+const score1 = document.querySelector('.score--1');
+//current ->variable de estado en JS
+const current0 = document.querySelector('.current--0');
+const current1 = document.querySelector('.current--1');
+
+
+const btnNew = document.querySelector('.btn--new');
+const btnRoll = document.querySelector('.btn--roll');
+const btnHold = document.querySelector('.btn--hold');
+
+const imgDice = document.querySelector('.dice');
