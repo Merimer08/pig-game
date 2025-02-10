@@ -1,7 +1,7 @@
 {
   "name": "pig-game",
   "private": true,
-  "homepage": "https://Merimer08.github.io/pig-game",
+  
   "version": "0.0.0",
   "type": "module",
   "scripts": {
