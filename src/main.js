@@ -1,7 +1,6 @@
 import './style.css'
 
 
-
 document.querySelector('#app').innerHTML = `
    <main>
       <section class="player player--0 player--active">
@@ -41,8 +40,8 @@ const SelectionPlayer1 = document.querySelector('.player--1');
 const score0 = document.querySelector('.score--0');
 const score1 = document.querySelector('.score--1');
 //current ->variable de estado en JS
-const current0 = document.querySelector('.current--0');
-const current1 = document.querySelector('.current--1');
+const currentScore0 = document.querySelector('.current--0');
+const currentScore1 = document.querySelector('.current--1');
 
 
 const btnNew = document.querySelector('.btn--new');
@@ -50,3 +49,28 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 const imgDice = document.querySelector('.dice');
+
+let score, currentScore, activePlayer;
+
+const inirData = () => {
+
+  //init state variables
+    score = [0, 0];
+    currentScore = 0;
+    activePlayer = 0;
+
+    //init DOM
+  console.log(score0, "score0");
+  console.log(score1, "score1");
+
+  console.log(currentScore0, "currentScore0");
+  console.log(currentScore1, "currentScore1");
+
+  
+    score0.textContent = 0;
+    score1.textContent = 0;
+    currentScore0.textContent = 0;
+    currentScore1.textContent = 0;
+};
+
+inirData()
