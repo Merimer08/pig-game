@@ -113,3 +113,5 @@ function resetCurrentScore() {
   if (activePlayer === 0) currentScore0.textContent = currentScore;
   else currentScore1.textContent = currentScore;
 }
+
+https://claude.ai/chat/694a70a5-8fdb-4a32-b0c7-e17ae2e36554
