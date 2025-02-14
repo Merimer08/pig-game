@@ -24,26 +24,18 @@ document.querySelector("#app").innerHTML = `
       <button class="btn btn--roll">🎲 Roll dice</button>
       <button class="btn btn--hold">📥 Hold</button>
     </main>
-
 `;
 
-// variables de estado en JS y selectores DOMXS
-
-// activePlayer -> variable de estado en JS
+// variables de estado en JS y selectores DOM
 const sectionPlayer0 = document.querySelector(".player--0");
 const sectionPlayer1 = document.querySelector(".player--1");
-// score = [0,0] -> variable de estado en JS
 const score0 = document.querySelector("#score--0");
 const score1 = document.querySelector("#score--1");
-
-// current -> variable de estado en JS
 const currentScore0 = document.querySelector("#current--0");
 const currentScore1 = document.querySelector("#current--1");
-
 const btnNew = document.querySelector(".btn--new");
 const btnHold = document.querySelector(".btn--hold");
 const btnRoll = document.querySelector(".btn--roll");
-
 const imgDice = document.querySelector(".dice");
 
 let score, currentScore, activePlayer;
@@ -55,7 +47,6 @@ const initData = () => {
   activePlayer = 0;
 
   // init DOM elements
-
   imgDice.classList.add("hidden");
   score0.textContent = 0;
   score1.textContent = 0;
@@ -64,8 +55,6 @@ const initData = () => {
 };
 
 initData();
-
-btnRoll.addEventListener("click", throwDice);
 
 function throwDice() {
   // generar un número del 1 al 6
@@ -79,39 +68,81 @@ function throwDice() {
 }
 
 function updateCurrentScore(diceNumber) {
-  currentScore += diceNumber; // current = current + diceNumber
+  currentScore += diceNumber;
   if (activePlayer === 0) currentScore0.textContent = currentScore;
   else currentScore1.textContent = currentScore;
 }
 
 function switchPlayer() {
-  {
-    // currentScore se tiene que resetear a 0 y también en el DOM!!!
-    resetCurrentScore();
+  // currentScore se tiene que resetear a 0 y también en el DOM!!!
+  resetCurrentScore();
 
-    // css cambiará
+  // css cambiará
+  sectionPlayer0.classList.toggle("player--active");
+  sectionPlayer1.classList.toggle("player--active");
 
-    sectionPlayer0.classList.toggle("player--active");
-    sectionPlayer1.classList.toggle("player--active");
-
-    // versión larga:
-    // if (activePlayer === 0) {
-    //   sectionPlayer0.classList.remove("player--active");
-    //   sectionPlayer1.classList.add("player--active");
-    // } else {
-    //   sectionPlayer1.classList.remove("player--active");
-    //   sectionPlayer0.classList.add("player--active");
-    // }
-
-    // activePlayer cambia de 0 a 1 ó de 1 a 0
-    activePlayer = activePlayer === 0 ? 1 : 0;
-  }
+  // activePlayer cambia de 0 a 1 ó de 1 a 0
+  activePlayer = activePlayer === 0 ? 1 : 0;
 }
 
 function resetCurrentScore() {
-  currentScore = 0; // current = current + diceNumber
+  currentScore = 0;
   if (activePlayer === 0) currentScore0.textContent = currentScore;
   else currentScore1.textContent = currentScore;
 }
 
-https://claude.ai/chat/694a70a5-8fdb-4a32-b0c7-e17ae2e36554
+function userHoldsScore() {
+  // Add current score to total score
+  score[activePlayer] += currentScore;
+    
+  // Update the score in the DOM
+  if (activePlayer === 0) {
+    score0.textContent = score[activePlayer];
+  } else {
+    score1.textContent = score[activePlayer];
+  }
+    
+  // Check if player has won
+  if (score[activePlayer] >= 100) {
+    // Add winner class
+    if (activePlayer === 0) {
+      sectionPlayer0.classList.add('player--winner');
+      sectionPlayer0.classList.remove('player--active');
+    } else {
+      sectionPlayer1.classList.add('player--winner');
+      sectionPlayer1.classList.remove('player--active');
+    }
+        
+    // Hide dice
+    imgDice.classList.add('hidden');
+        
+    // Disable buttons
+    btnRoll.disabled = true;
+    btnHold.disabled = true;
+  } else {
+    // If no winner, switch to next player
+    switchPlayer();
+  }
+}
+
+function userResetsGame() {
+  // Remove winner class if present
+  sectionPlayer0.classList.remove('player--winner');
+  sectionPlayer1.classList.remove('player--winner');
+    
+  // Reset active player to player 1
+  sectionPlayer0.classList.add('player--active');
+  sectionPlayer1.classList.remove('player--active');
+    
+  // Enable buttons
+  btnRoll.disabled = false;
+  btnHold.disabled = false;
+    
+  // Initialize all data
+  initData();
+}
+
+// Event Listeners
+btnRoll.addEventListener("click", throwDice);
+btnHold.addEventListener('click', userHoldsScore);
+btnNew.addEventListener('click', userResetsGame)
