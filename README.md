@@ -17,3 +17,6 @@
 - Integramos index.html y los datos dentro de la estructura de vite
 - Gestionar el repositorio en GitHub y hacer un mínimo de 5 commits y que sean públicos
 - Publicar el repo usando gh-pages
+
+
+## Pasos segidos
